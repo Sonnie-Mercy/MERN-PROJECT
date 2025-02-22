@@ -11,7 +11,8 @@ const setTask = asyncHandler(async(req, res) => {
         res.status(400)
         throw new Error('Please enter a task')
     }
-    res.status(200).json({ message: 'Create Task'});
+    const task = await Task.create({ text: req.body.text });
+    res.status(200).json(task);
 })
 
 const updateTask = asyncHandler(async(req, res) => {
